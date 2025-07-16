@@ -2,6 +2,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
 import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home'
+import QuienesSomos from './pages/QuienesSomos';
+import Productos from './pages/Productos';
+import ProductoDetalle from './pages/ProductoDetalle';
+import Contacto from './pages/Contacto';
 function App() {
 
   return (

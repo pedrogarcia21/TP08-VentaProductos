@@ -1,0 +1,46 @@
+.productos-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .productos-lista {
+    background-color: white;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 10px 0;
+    justify-content: center; /* Opcional, para centrar las filas */
+  }
+  
+  .producto-card {
+    flex: 1 1 200px; /* Crece, encoge, y tiene base 200px */
+    max-width: 220px; /* Para que no crezca demasiado */
+    box-sizing: border-box;
+  }
+  
+  
+  .producto-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .producto-card img {
+    max-width: 100%;
+    height: 150px;
+    object-fit: contain;
+    margin-bottom: 10px;
+  }
+  
+  .producto-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+    color: #222;
+  }
+  
+  .producto-card p {
+    font-weight: 600;
+    color: #008cffea;
+    font-size: 1.2rem;
+  }
+  
