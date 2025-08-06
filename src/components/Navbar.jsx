@@ -11,7 +11,7 @@ function Navbar() {
       .then(data => setCategorias(data))
       .catch(error => console.error("Error al cargar categorías:", error));
   }, []);
-
+0
   return (
     <header className="navbar">
       <div className="navbar-container">
@@ -31,7 +31,7 @@ function Navbar() {
                 <li><Link to="/productos">Ver todos</Link></li>
                 {categorias.map(cat => (
                   <li key={cat.slug || cat}>
-                    <Link to={`/productos/categoria/${encodeURIComponent(cat.slug || cat)}`}>
+                <Link to={`/productos/categoria/${encodeURIComponent(cat.slug || cat)}`}>
                       {cat.name || cat}
                     </Link>
                   </li>
