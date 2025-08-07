@@ -1,77 +1,81 @@
-import { useState } from "react";
+  import { useEffect, useState } from "react";
+  import { Link } from "react-router-dom";
+  import "./Home.css"; 
+  import bannerImage from '../assets/Banner.jpgg'; 
 
-const images = [
-  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=80"
-];
+  function Home() {
+    const [productosDestacados, setProductosDestacados] = useState([]);
+    const [categorias, setCategorias] = useState([]);
 
-function Home() {
-  const [index, setIndex] = useState(0);
+    useEffect(() => {
+      // Traer categorías
+      fetch("https://dummyjson.com/products/categories")
+        .then((res) => res.json())
+        .then((data) => setCategorias(data))
+        .catch(console.error);
 
-  const prevImage = () => {
-    setIndex((index - 1 + images.length) % images.length);
-  };
+      // Traer algunos productos destacados, por ejemplo primeros 4 de la lista general
+      fetch("https://dummyjson.com/products?limit=4")
+        .then((res) => res.json())
+        .then((data) => setProductosDestacados(data.products))
+        .catch(console.error);
+    }, []);
 
-  const nextImage = () => {
-    setIndex((index + 1) % images.length);
-  };
+    return (
+      <div>
+        {/* Hero */}
+        <section 
+        className="hero" 
+        style={{ backgroundImage: `url(${bannerImage})` }}
+      >
+        <div className="overlay"></div>
+        <div className="hero-content">
+          <h1>Explorá los mejores productos online</h1>
+          <p>Lo último en tecnología, moda y más</p>
+          <Link to="/productos" className="btn-primary">
+            Ver catálogo completo
+          </Link>
+        </div>
+      </section>
 
-  return (
-    <div style={{ maxWidth: "700px", margin: "2rem auto", textAlign: "center" }}>
-      <h2>Bienvenido a la tienda de productos online</h2>
-
-      <div style={{ position: "relative", marginTop: "2rem" }}>
-        <img
-          src={images[index]}
-          alt={`Imagen ${index + 1}`}
-          style={{ width: "100%", borderRadius: "10px", maxHeight: "400px", objectFit: "cover" }}
-        />
-
-        <button
-          onClick={prevImage}
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "10px",
-            transform: "translateY(-50%)",
-            backgroundColor: "rgba(0,0,0,0.5)",
-            color: "white",
-            border: "none",
-            borderRadius: "50%",
-            width: "40px",
-            height: "40px",
-            cursor: "pointer",
-            fontSize: "20px",
-          }}
-          aria-label="Imagen anterior"
-        >
-          ‹
-        </button>
-
-        <button
-          onClick={nextImage}
-          style={{
-            position: "absolute",
-            top: "50%",
-            right: "10px",
-            transform: "translateY(-50%)",
-            backgroundColor: "rgba(0,0,0,0.5)",
-            color: "white",
-            border: "none",
-            borderRadius: "50%",
-            width: "40px",
-            height: "40px",
-            cursor: "pointer",
-            fontSize: "20px",
-          }}
-          aria-label="Imagen siguiente"
-        >
-          ›
-        </button>
-      </div>
+        {/* Categorías */}
+        <section className="categorias-home">
+    <h2>Categorías destacadas</h2>
+    <div className="categorias-grid">
+      {categorias.length > 0 &&
+        categorias.slice(0, 4).map((categoria) => (
+          <Link
+            key={categoria}
+            to={`/productos/categoria/${encodeURIComponent(categoria)}`}
+            className="categoria-card"
+          >
+            <div className="categoria-contenido">
+              {typeof categoria === "string" ? categoria.toUpperCase() : ""}
+            </div>
+          </Link>
+        ))}
     </div>
-  );
-}
+  </section>
 
-export default Home;
+        {/* Productos destacados */}
+        <section className="productos-home">
+          <h2>Productos destacados</h2>
+          <div className="productos-grid">
+            {productosDestacados.map((producto) => (
+              <Link
+                key={producto.id}
+                to={`/productos/${producto.id}`}
+                className="producto-card"
+              >
+                <img src={producto.thumbnail} alt={producto.title} />
+                <h3>{producto.title}</h3>
+                <p>${producto.price}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  export default Home;

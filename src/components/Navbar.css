@@ -83,6 +83,8 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.5);
     z-index: 10000;
     flex-direction: column;
+    list-style: none;
+
   }
   
   .dropdown:hover .dropdown-menu {
