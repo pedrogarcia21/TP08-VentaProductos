@@ -2,7 +2,7 @@ import './Contacto.css';
 
 const Contacto = () => {
   return (
-    <div>
+    <div className="contacto-container">
       <h1>Contacto</h1>
       <p>¿Tenés alguna duda sobre nuestros celulares? Escribinos:</p>
       <form>
@@ -24,4 +24,4 @@ const Contacto = () => {
   );
 };
 
-export default Contacto;
+export default Contacto

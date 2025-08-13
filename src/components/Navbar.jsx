@@ -11,7 +11,7 @@ function Navbar() {
       .then(data => setCategorias(data))
       .catch(error => console.error("Error al cargar categorías:", error));
   }, []);
-0
+
   return (
     <header className="navbar">
       <div className="navbar-container">
