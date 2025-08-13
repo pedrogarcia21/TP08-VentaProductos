@@ -8,7 +8,6 @@ const Productos = () => {
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
 
-  // Filtros y búsqueda
   const [busqueda, setBusqueda] = useState("");
   const [precioMin, setPrecioMin] = useState("");
   const [precioMax, setPrecioMax] = useState("");
@@ -39,7 +38,6 @@ const Productos = () => {
       });
   }, [idCategoria]);
 
-  // Filtro de búsqueda y precio
   const productosFiltrados = productos.filter((producto) => {
     const coincideBusqueda = producto.title.toLowerCase().includes(busqueda.toLowerCase());
     const coincideMin = precioMin === "" || producto.price >= Number(precioMin);

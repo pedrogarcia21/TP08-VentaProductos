@@ -1,3 +1,4 @@
+
 .hero {
   background-image: url('/src/assets/hero.jpg');
   background-size: cover;
@@ -27,7 +28,6 @@
   padding: 3rem 2rem;
 }
 
-/* Aquí cambio para que categorías estén en una fila */
 .categorias-grid {
   display: flex;
   justify-content: center;
@@ -272,4 +272,7 @@
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
+}
+.home-main-container {
+  padding-top: 90px;
 }

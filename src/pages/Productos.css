@@ -1,3 +1,4 @@
+
 .productos-container {
     padding: 2rem;
     max-width: 1200px;
@@ -10,12 +11,12 @@
     flex-wrap: wrap;
     gap: 20px;
     padding: 10px 0;
-    justify-content: center; /* Opcional, para centrar las filas */
+    justify-content: center; 
   }
   
   .producto-card {
-    flex: 1 1 200px; /* Crece, encoge, y tiene base 200px */
-    max-width: 220px; /* Para que no crezca demasiado */
+    flex: 1 1 200px; 
+    max-width: 220px; 
     box-sizing: border-box;
   }
   
@@ -42,4 +43,6 @@
     color: #008cffea;
     font-size: 1.2rem;
   }
-  
+  .productos-container {
+  padding-top: 90px; 
+}

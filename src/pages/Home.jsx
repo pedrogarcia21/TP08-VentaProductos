@@ -37,7 +37,6 @@ function Home() {
     setTimeout(() => setFadeIn(true), 100);
   }, []);
 
-  // Búsqueda global en todos los productos
   useEffect(() => {
     if (busqueda.trim() === "") {
       setResultadosBusqueda([]);
@@ -49,7 +48,6 @@ function Home() {
     setResultadosBusqueda(resultados);
   }, [busqueda, todosLosProductos]);
 
-  // Filtro de búsqueda y precio para ofertas
   const ofertasFiltradas = ofertas.filter((producto) => {
     const coincideBusqueda = producto.title.toLowerCase().includes(busqueda.toLowerCase());
     const coincideMin = precioMin === "" || producto.price >= Number(precioMin);
@@ -57,7 +55,6 @@ function Home() {
     return coincideBusqueda && coincideMin && coincideMax;
   });
 
-  // Carrito ficticio
   const agregarAlCarrito = (producto) => {
     setCarrito((prev) => [...prev, producto]);
   };
@@ -69,43 +66,9 @@ function Home() {
   const totalCarrito = carrito.reduce((acc, prod) => acc + prod.price, 0);
 
   return (
-    <div>
-      {/* Búsqueda global */}
-      <section className="busqueda-global">
-        <input
-          type="text"
-          placeholder="Buscar en toda la tienda..."
-          value={busqueda}
-          onChange={e => setBusqueda(e.target.value)}
-          className="input-busqueda-global"
-        />
-      </section>
+    <div  className="home-main-container">
+            
 
-      {/* Resultados de búsqueda */}
-      {busqueda.trim() !== "" && (
-        <section className="resultados-busqueda">
-          <h2>Resultados de búsqueda</h2>
-          <div className="productos-grid">
-            {resultadosBusqueda.length === 0 ? (
-              <p style={{ gridColumn: "1/-1", color: "#888" }}>No se encontraron productos.</p>
-            ) : (
-              resultadosBusqueda.map((producto) => (
-                <Link
-                  key={producto.id}
-                  to={`/productos/${producto.id}`}
-                  className="producto-card"
-                >
-                  <img src={producto.thumbnail} alt={producto.title} />
-                  <h3>{producto.title}</h3>
-                  <p>${producto.price}</p>
-                </Link>
-              ))
-            )}
-          </div>
-        </section>
-      )}
-
-      {/* Hero */}
       <section
         className="hero"
         style={{ backgroundImage: `url(${bannerImage})` }}
@@ -120,7 +83,6 @@ function Home() {
         </div>
       </section>
 
-      {/* Beneficios */}
       <section className="beneficios-home">
         <h2>¿Por qué elegirnos?</h2>
         <div className="beneficios-grid">
@@ -148,7 +110,6 @@ function Home() {
       </section>
 
 
-      {/* Modal Carrito */}
       {mostrarCarrito && (
         <div className="carrito-modal-bg" onClick={() => setMostrarCarrito(false)}>
           <div className="carrito-modal" onClick={e => e.stopPropagation()}>
@@ -177,7 +138,6 @@ function Home() {
         </div>
       )}
 
-      {/* Ofertas de la semana */}
       <section className="ofertas-home">
         <h2>Ofertas de la semana</h2>
         <div className={`productos-grid fade-in ${fadeIn ? "visible" : ""}`}>
@@ -210,7 +170,6 @@ function Home() {
         </div>
       </section>
 
-      {/* Productos destacados */}
       <section className="productos-home">
         <h2>Productos destacados</h2>
         <div className="productos-grid fade-in visible">
